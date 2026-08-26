@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "This repo is created to help me learn the concept of writing tests before writing actual code",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --watch"
   },
   "keywords": [],
   "author": "Clematins",
