@@ -1,13 +1,13 @@
 {
-  "name": "tests",
+  "name": "testing_practice",
   "version": "1.0.0",
-  "description": "This repo is created for tests, all sort of tests from simple tests with jest, to React tests, and integrated testing for databases",
+  "description": "This repo is created to help me learn the concept of writing tests before writing actual code",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Clematins",
   "license": "ISC",
   "devDependencies": {
     "jest": "^30.0.5"
