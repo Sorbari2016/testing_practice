@@ -21,4 +21,25 @@ const capitalize = (str) => {
   return cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1).toLowerCase();
 };
 
-export { capitalize };
+// Create a reverseString function that takes a string and returns it reversed.
+
+const reverseString = (str) => {
+  // check if str is actually a string
+  if (typeof str !== "string") {
+    throw new Error("str must be a string");
+  }
+
+  // check if str was provided
+  if (!str || str.trim() === "") {
+    throw new Error("str is required!");
+  }
+
+  // check if str is just a letter
+  if (str.length === 1) {
+    return str;
+  }
+
+  return str.split("").reverse().join("");
+};
+
+export { capitalize, reverseString };

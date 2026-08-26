@@ -1,5 +1,5 @@
 // imports
-import { capitalize } from "../scripts/utility";
+import { capitalize, reverseString } from "../scripts/utility";
 
 // capitalize
 describe("capitalize", () => {
@@ -37,5 +37,45 @@ describe("capitalize", () => {
     expect(capitalize("!hi")).toBe("!hi");
     expect(capitalize("#WON!")).toBe("#won!");
     expect(capitalize("123hello")).toBe("123hello");
+  });
+});
+
+// reverseString
+describe("reverseString", () => {
+  test("throws an error when no arg, or a space string is supplied", () => {
+    expect(() => reverseString()).toThrow("str must be a string");
+    expect(() => reverseString(" ")).toThrow("str is required!");
+  });
+
+  test("throws an error when a non-string is supplied", () => {
+    expect(() => reverseString(true)).toThrow("str must be a string");
+    expect(() => reverseString(123)).toThrow("str must be a string");
+  });
+
+  test("returns the same character if a single character is provided", () => {
+    expect(reverseString("a")).toBe("a");
+    expect(reverseString("2")).toBe("2");
+  });
+
+  test("returns a string of characters reversed", () => {
+    expect(reverseString("baby")).toBe("ybab");
+    expect(reverseString("aaa")).toBe("aaa");
+    expect(Boolean(JSON.parse(reverseString("eslaf")))).toBeFalsy();
+  });
+
+  test("return a string with space reversed", () => {
+    expect(reverseString(" ahmed")).toBe("demha ");
+    expect(reverseString("ahmed ")).toBe(" demha");
+  });
+
+  test("returns a string of reversed numerical string", () => {
+    expect(parseInt(reverseString("123"))).toEqual(321);
+    expect(reverseString("100")).toBe("001");
+  });
+
+  test("returns a string with special characters/symbols reversed", () => {
+    expect(reverseString("!hi")).toBe("ih!");
+    expect(reverseString("#won")).toBe("now#");
+    expect(reverseString("hello 123")).toBe("321 olleh");
   });
 });
