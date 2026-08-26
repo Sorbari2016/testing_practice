@@ -42,4 +42,29 @@ const reverseString = (str) => {
   return str.split("").reverse().join("");
 };
 
-export { capitalize, reverseString };
+/* Create an analyzeArray function that takes an array of numbers and returns an object 
+with the following properties: average, min, max, and length.
+*/
+const analyzeArray = (arr) => {
+  // check if arr is an array
+  if (!(arr instanceof Array)) {
+    throw new Error("arr MUST an array");
+  }
+
+  // check if arr is empty
+  if (!arr || arr.length < 1) {
+    throw new Error("arr MUST be an array with atleast one item");
+  }
+
+  return {
+    average:
+      arr.reduce((acc, cur) => {
+        return acc + cur;
+      }, 0) / arr.length,
+    max: Math.max(...arr),
+    min: Math.min(...arr),
+    length: arr.length,
+  };
+};
+
+export { capitalize, reverseString, analyzeArray };

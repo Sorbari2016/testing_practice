@@ -1,5 +1,5 @@
 // imports
-import { capitalize, reverseString } from "../scripts/utility";
+import { capitalize, reverseString, analyzeArray } from "../scripts/utility";
 
 // capitalize
 describe("capitalize", () => {
@@ -77,5 +77,46 @@ describe("reverseString", () => {
     expect(reverseString("!hi")).toBe("ih!");
     expect(reverseString("#won")).toBe("now#");
     expect(reverseString("hello 123")).toBe("321 olleh");
+  });
+});
+
+// analyzeArray
+describe("analyzeArray", () => {
+  test("should return an object, with some properties", () => {
+    const analyzedArray = analyzeArray([0, 1]);
+    expect(analyzedArray).toBeInstanceOf(Object);
+    expect(analyzedArray).toHaveProperty("average");
+    expect(analyzedArray).not.toHaveProperty("mean");
+  });
+
+  test("should analyze an array and object with the property average", () => {
+    const analyzedArray = analyzeArray([1, 4, 2, 3]);
+    expect(analyzedArray.average).toEqual(2.5);
+    expect(parseInt(analyzedArray.average)).toEqual(2);
+  });
+
+  test("should analyze an array and return its max and min as object properties", () => {
+    const analyzedArray = analyzeArray([1, 4, 2, 3]);
+    console.log(Math.max(...[1, 4, 2, 3]));
+    expect(analyzedArray.min).toEqual(1);
+    expect(analyzedArray.max).toEqual(4);
+    expect(analyzedArray.max + analyzedArray.min).toEqual(5);
+  });
+
+  test("should analyze an array an return an object with the property length", () => {
+    const analyzedArray = analyzeArray([1, 4, 2, 3]);
+    expect(analyzedArray.length).toEqual(4);
+  });
+
+  test("should analyze an object and return 4 properties", () => {
+    const analyzedArray = analyzeArray([1, 8, 3, 4, 2, 6]);
+    expect(analyzedArray).toEqual(
+      expect.objectContaining({
+        average: 4,
+        max: 8,
+        min: 1,
+        length: 6,
+      }),
+    );
   });
 });
