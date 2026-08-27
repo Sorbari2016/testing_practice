@@ -1,5 +1,10 @@
 // imports
-import { capitalize, reverseString, analyzeArray } from "../scripts/utility";
+import {
+  capitalize,
+  reverseString,
+  analyzeArray,
+  calculator,
+} from "../scripts/utility";
 
 // capitalize
 describe("capitalize", () => {
@@ -117,6 +122,44 @@ describe("analyzeArray", () => {
         min: 1,
         length: 6,
       }),
+    );
+  });
+});
+
+// calculator object
+describe("calculator", () => {
+  test("should take two numbers and return their addition", () => {
+    expect(calculator.add(3, 9)).toEqual(12);
+    expect(calculator.add(2, 4)).toEqual(6);
+    expect(calculator.add(1, 0)).toEqual(1);
+    expect(calculator.add(-5, -1)).toEqual(-6);
+    expect(calculator.add(-5, 5)).toEqual(0);
+    expect(calculator.add(10, -7)).toEqual(3);
+  });
+
+  test("should take two numbers and return their difference", () => {
+    expect(calculator.subtract(4, 2)).toEqual(2);
+    expect(calculator.subtract(1, 0)).toBe(1);
+    expect(calculator.subtract(-5, -1)).toBe(-4);
+    expect(calculator.subtract(-5, 5)).toEqual(-10);
+    expect(calculator.subtract(10, -7)).toEqual(17);
+  });
+
+  test("should take two numbers and return their product", () => {
+    expect(calculator.multiply(2, 4)).toEqual(8);
+    expect(calculator.multiply(1, 0)).toEqual(0);
+    expect(calculator.multiply(-5, -1)).toEqual(5);
+    expect(calculator.multiply(-5, 5)).toEqual(-25);
+    expect(calculator.multiply(10, -7)).toEqual(-70);
+  });
+
+  test("should take two numbers and return their division", () => {
+    expect(calculator.divide(4, 2)).toEqual(2);
+    expect(() => calculator.divide(1, 0)).toThrow("Can't divide by 0");
+    expect(calculator.divide(-5, -1)).toBe(5);
+    expect(calculator.divide(-5, 5)).toBe(-1);
+    expect(Number(parseFloat(calculator.divide(10, -7)).toFixed(2))).toEqual(
+      -1.43,
     );
   });
 });

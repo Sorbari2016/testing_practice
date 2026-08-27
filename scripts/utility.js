@@ -67,4 +67,55 @@ const analyzeArray = (arr) => {
   };
 };
 
-export { capitalize, reverseString, analyzeArray };
+/*  Create A calculator object that contains functions for the basic operations: add, subtract, divide, and multiply.
+Each of these functions should take two numbers and return the correct calculation.
+*/
+
+const calculator = {
+  // add
+  add(a, b) {
+    // check if arg provided are numbers
+    if (typeof a !== "number" || typeof b !== "number") {
+      throw new Error("Only numbers are allowed");
+    }
+
+    return a + b;
+  },
+
+  // subtract
+  subtract(a, b) {
+    // check if arg provided are numbers
+    if (typeof a !== "number" || typeof b !== "number") {
+      throw new Error("Only numbers are allowed");
+    }
+
+    return a - b;
+  },
+
+  // multiply
+  multiply(a, b) {
+    // check if arg provided are numbers
+    if (typeof a !== "number" || typeof b !== "number") {
+      throw new Error("Only numbers are allowed");
+    }
+
+    return a * b;
+  },
+
+  // divide
+  divide(a, b) {
+    // check if arg provided are numbers
+    if (typeof a !== "number" || typeof b !== "number") {
+      throw new Error("Only numbers are allowed");
+    }
+
+    // check if the divisor is 0
+    if (b === 0) {
+      throw new Error("Can't divide by 0");
+    }
+
+    return a / b;
+  },
+};
+
+export { capitalize, reverseString, analyzeArray, calculator };
