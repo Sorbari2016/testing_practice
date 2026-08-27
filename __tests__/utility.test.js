@@ -4,6 +4,7 @@ import {
   reverseString,
   analyzeArray,
   calculator,
+  caesarCipher,
 } from "../scripts/utility";
 
 // capitalize
@@ -161,5 +162,37 @@ describe("calculator", () => {
     expect(Number(parseFloat(calculator.divide(10, -7)).toFixed(2))).toEqual(
       -1.43,
     );
+  });
+});
+
+// caesarCipher
+describe("caesarCipher", () => {
+  test("takes a string and a shift factor, and returns it with each character shifted", () => {
+    expect(caesarCipher("abc", 1)).toBe("bcd");
+    expect(caesarCipher("dog", 3)).toBe("grj");
+  });
+
+  test("works for characters at the end of the alphabets", () => {
+    expect(caesarCipher("xyz", 3)).toBe("abc");
+    expect(caesarCipher("zar", 1)).toBe("abs");
+  });
+
+  test("works for large factors", () => {
+    expect(caesarCipher("abc", 10)).toBe("klm");
+  });
+
+  test("should preserve the case of the string", () => {
+    expect(caesarCipher("heLLo", 3)).toBe("khOOr");
+    expect(caesarCipher("aGe", 2)).toBe("cIg");
+    console.log(caesarCipher("Hello, World!", 3));
+  });
+
+  test("should preserve the punctuation, spaces, and other non-alphabetical characters within the string", () => {
+    expect(caesarCipher("Hello, World!", 3)).toBe("Khoor, Zruog!");
+    expect(caesarCipher("We want #Freedom", 1)).toBe("Xf xbou #Gsffepn");
+  });
+
+  test("should return the exact string if factor is 0", () => {
+    expect(caesarCipher("abc", 0)).toBe("abc");
   });
 });

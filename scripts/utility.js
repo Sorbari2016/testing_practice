@@ -118,4 +118,62 @@ const calculator = {
   },
 };
 
-export { capitalize, reverseString, analyzeArray, calculator };
+// Create a function that takes a string and a shift factor and returns it with each character “shifted
+const caesarCipher = (str, factor) => {
+  // check if first str is actually a string
+  if (!str || typeof str !== "string" || str.trim() === "") {
+    throw new Error("str must be a string");
+  }
+
+  // check if factor is a number
+  if (typeof factor !== "number") {
+    throw new Error("factor must be a number");
+  }
+
+  // check if factor is less than 0
+  if (factor < 0) {
+    throw new Error("factor must not be less than 0");
+  }
+
+  // check if factor is exactly 0
+  if (factor === 0) {
+    return str;
+  }
+
+  // increase codepoint
+  let increasedCodePoints = str
+    .split("")
+    .map((string) => increaseCodePoint(string, factor));
+
+  // get the new alphabets
+  return increasedCodePoints
+    .map((item) => getAlphabetFromCodePoint(item))
+    .join("");
+};
+
+let increaseCodePoint = (str, factor) => {
+  if (!str) return str;
+  let code = str.codePointAt(0);
+
+  if (/[a-z]/.test(str)) {
+    let nextCode = code + factor;
+    return nextCode > 122 ? ((nextCode - 97) % 26) + 97 : nextCode;
+  }
+
+  if (/[A-Z]/.test(str)) {
+    let nextCode = code + factor;
+    return nextCode > 90 ? ((nextCode - 65) % 26) + 65 : nextCode;
+  }
+
+  return str;
+};
+
+let getAlphabetFromCodePoint = (num) => {
+  if (typeof num !== "number") {
+    return num;
+  }
+
+  return String.fromCharCode(num);
+};
+
+export { capitalize, reverseString, analyzeArray, calculator, caesarCipher };
